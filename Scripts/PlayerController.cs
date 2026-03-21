@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject[] attackOrigin;
     [SerializeField] private GameObject[] attackPrefabs;
     [SerializeField] private Image staminaBarFill;
+    [SerializeField] private TextMeshProUGUI comboText;
 
     [Header("For Viewing")]
     [SerializeField] private bool isGrounded = false;
@@ -42,6 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeSinceStaminaUse = 0.0f;
     [SerializeField] private float timeSinceJump = 0.0f;
     [SerializeField] private float stamina = 0;
+    [SerializeField] private int currentCombo = 0;
 
     [SerializeField] private GameObject currentAttackObject;
 
@@ -55,11 +58,13 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private dirData dir;
 
+    //Called on Initialization
     private void Start()
     {
         stamina = maxStamina;
     }
 
+    //Called every Physics Frame
     private void FixedUpdate()
     {
         if (!isGrounded)
@@ -71,10 +76,14 @@ public class PlayerController : MonoBehaviour
         playerPhysics.linearVelocity = velocity;
     }
 
+    //Called every frame
     private void Update()
     {
+        //UI Updates
         staminaBarFill.fillAmount = stamina / maxStamina;
+        comboText.text = currentCombo.ToString();
 
+        //Timers (Increment w/ frame time (delta time))
         timeSinceJump += Time.deltaTime;
         timeSinceAttack += Time.deltaTime;
         timeSinceLastInput += Time.deltaTime;
@@ -82,6 +91,7 @@ public class PlayerController : MonoBehaviour
 
         if (timeSinceStaminaUse >= staminaRechargeCooldown)
         {
+            //Multiply by delta time so regen speed is frame-independent
             stamina += staminaRegenerationRate*Time.deltaTime;
 
             if (stamina > maxStamina)
@@ -90,11 +100,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        //Check for negative stamina
         if (stamina < 0)
         {
             stamina = 0;
         }
 
+        //Input
         if (lastInput == KeyCode.D)
         {
             dir = dirData.Right;
@@ -271,6 +283,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+
+    //Called on GroundCheck collider collision
     public void GroundCollider()
     {
         for (int i = 0; i < groundDetection.currentlyTouching.Count; i++)
@@ -289,4 +303,5 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = false;
     }
+
 }
