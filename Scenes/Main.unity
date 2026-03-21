@@ -523,7 +523,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 831137228629496896, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6951388283565815586, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2136155788}
     m_AddedComponents: []
@@ -662,6 +662,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &802192476 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6951388283565815586, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
+  m_PrefabInstance: {fileID: 603052475}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &819522396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1190,11 +1195,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
---- !u!4 &1553571542 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 831137228629496896, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
-  m_PrefabInstance: {fileID: 603052475}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1918530857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1438,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1553571542}
+  m_Father: {fileID: 802192476}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2136155789
 SpriteRenderer:
@@ -1503,6 +1503,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: dashDecay
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: dashForce
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: dashInputWindow
+      value: 0.225
+      objectReference: {fileID: 0}
     - target: {fileID: 6108217634633577419, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

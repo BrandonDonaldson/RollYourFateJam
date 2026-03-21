@@ -10,13 +10,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravityStrength = -9.6f;
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float jumpForce = 25f;
+    [SerializeField] private float dashForce = 25f;
+    [SerializeField] private float dashDecay = .1f;
+    [SerializeField] private float dashInputWindow = .1f;
     [SerializeField] private float jumpCooldown = 0.1f;
     [SerializeField] private float attackCooldown = 1.0f;
-    [SerializeField] private float attackActionCooldown = 0.25f;
+    [SerializeField] private float actionCooldown = 0.25f;
     [SerializeField] private float staminaRechargeCooldown = 0.5f;
     [SerializeField] private float staminaRegenerationRate = 0.1f;
     [SerializeField] private float maxStamina = 100f;
     [SerializeField] private float staminaJump = 20f;
+    [SerializeField] private float staminaDash = 50f;
     [SerializeField] private float staminaPunch = 15f;
     [SerializeField] private float staminaAirPunch = 30f;
     [SerializeField] private float staminaKick = 15f;
@@ -34,15 +38,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isGrounded = false;
 
     [SerializeField] private Vector2 movementVel;
-    [SerializeField] private Vector2 environmentVel;
-    [SerializeField] private Vector2 naturalVel;
+    [SerializeField] private Vector2 additionalVel;
     [SerializeField] private Vector2 velocity;
 
-    [SerializeField] private KeyCode lastInput;
-    [SerializeField] private float timeSinceLastInput = 0.0f;
+    [SerializeField] private KeyCode lastDashInput;
+    [SerializeField] private float timeSinceDashInput = 0.0f;
     [SerializeField] private float timeSinceAttack = 0.0f;
     [SerializeField] private float timeSinceStaminaUse = 0.0f;
     [SerializeField] private float timeSinceJump = 0.0f;
+    [SerializeField] private float timeSinceDash = 0.0f;
     [SerializeField] private float stamina = 0;
     [SerializeField] private int currentCombo = 0;
 
@@ -73,7 +77,14 @@ public class PlayerController : MonoBehaviour
             movementVel.y += gravityStrength;
         }
 
-        velocity = movementVel + environmentVel + naturalVel;
+        additionalVel.x *= dashDecay;
+
+        if (Mathf.Abs(movementVel.x) > Mathf.Abs(additionalVel.x))
+        {
+            additionalVel.x = 0;
+        }
+
+        velocity = movementVel + additionalVel;
         playerPhysics.linearVelocity = velocity;
     }
 
@@ -98,8 +109,9 @@ public class PlayerController : MonoBehaviour
 
         //Timers (Increment w/ frame time (delta time))
         timeSinceJump += Time.deltaTime;
+        timeSinceDash += Time.deltaTime;
         timeSinceAttack += Time.deltaTime;
-        timeSinceLastInput += Time.deltaTime;
+        timeSinceDashInput += Time.deltaTime;
         timeSinceStaminaUse+= Time.deltaTime;
 
         if (timeSinceStaminaUse >= staminaRechargeCooldown)
@@ -120,11 +132,11 @@ public class PlayerController : MonoBehaviour
         }
 
         //Input
-        if (lastInput == KeyCode.D)
+        if (lastDashInput == KeyCode.D)
         {
             dir = dirData.Right;
         }
-        else if (lastInput == KeyCode.A)
+        else if (lastDashInput == KeyCode.A)
         {
             dir = dirData.Left;
         }
@@ -134,7 +146,7 @@ public class PlayerController : MonoBehaviour
             hasUsedAirAttack = false;
         }
 
-        if (timeSinceAttack < attackActionCooldown)
+        if (timeSinceAttack < actionCooldown)
         {
             return;
         }
@@ -162,7 +174,7 @@ public class PlayerController : MonoBehaviour
                             //PUNCH triggered here!
                             stamina -= staminaPunch;
                             print("Punching...");
-                            lastInput = KeyCode.Mouse0;
+                            lastDashInput = KeyCode.Mouse0;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
 
@@ -188,7 +200,7 @@ public class PlayerController : MonoBehaviour
                             stamina -= staminaAirPunch;
                             hasUsedAirAttack = true;
                             print("Air Punching...");
-                            lastInput = KeyCode.Mouse0;
+                            lastDashInput = KeyCode.Mouse0;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
 
@@ -217,7 +229,7 @@ public class PlayerController : MonoBehaviour
                             //KICK triggered here!
                             stamina -= staminaKick;
                             print("Kicking...");
-                            lastInput = KeyCode.Mouse1;
+                            lastDashInput = KeyCode.Mouse1;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
 
@@ -243,7 +255,7 @@ public class PlayerController : MonoBehaviour
                             stamina -= staminaAirKick;
                             hasUsedAirAttack = true;
                             print("Air Kicking...");
-                            lastInput = KeyCode.Mouse1;
+                            lastDashInput = KeyCode.Mouse1;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
 
@@ -264,22 +276,70 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            if (timeSinceAttack < attackActionCooldown)
+            if (timeSinceAttack < actionCooldown || timeSinceDash < actionCooldown)
             {
                 return;
+            }
+
+            #region Dash Mechanic
+
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                if (lastDashInput == KeyCode.D && timeSinceDashInput <= dashInputWindow)
+                {
+                    if (stamina >= staminaDash)
+                    {
+                        //Initiate Right Dash
+                        movementVel.x = 0;
+                        print("Dashing Right...");
+                        timeSinceDash = 0;
+                        stamina -= staminaDash;
+                        additionalVel.x = dashForce;
+                        timeSinceStaminaUse = 0;
+                    }
+                }
+                lastDashInput = KeyCode.D;
+            }
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                if (lastDashInput == KeyCode.A && timeSinceDashInput <= dashInputWindow)
+                {
+                    if (stamina >= staminaDash)
+                    {
+                        //Initiate Left Dash
+                        movementVel.x = 0;
+                        print("Dashing Left...");
+                        timeSinceDash = 0;
+                        stamina -= staminaDash;
+                        additionalVel.x = -dashForce;
+                        timeSinceStaminaUse = 0;
+                    }
+                }
+                lastDashInput = KeyCode.A;
+            }
+
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+            {
+                timeSinceDashInput = 0.0f;
+            }
+
+            #endregion
+
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                lastDashInput = KeyCode.A;
             }
 
             if (Input.GetKey(KeyCode.D) && isGrounded)
             {
                 movementVel.x = movementSpeed;
-                lastInput = KeyCode.D;
-                timeSinceLastInput = 0;
+                lastDashInput = KeyCode.D;
             }
             if (Input.GetKey(KeyCode.A) && isGrounded)
             {
                 movementVel.x = -movementSpeed;
-                lastInput = KeyCode.A;
-                timeSinceLastInput = 0;
+                lastDashInput = KeyCode.A;
             }
 
             if (Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.A) && isGrounded || !Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A) && isGrounded)
@@ -291,11 +351,10 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded && stamina >= staminaJump && timeSinceJump >= jumpCooldown)
             {
                 //JUMP triggered here!
+                lastDashInput = KeyCode.Space;
                 timeSinceJump = 0;
                 stamina -= staminaJump;
                 movementVel.y = jumpForce;
-                lastInput = KeyCode.Space;
-                timeSinceLastInput = 0;
                 timeSinceStaminaUse = 0;
             }
         }
