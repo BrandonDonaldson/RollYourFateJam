@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             if (currentAttackObject != null)
             {
-                Destroy(currentAttackObject.gameObject);
+              Destroy(currentAttackObject.gameObject);
             }
 
             if (timeSinceAttack > attackCooldown && Input.GetKey(KeyCode.Mouse0) || timeSinceAttack > attackCooldown && Input.GetKey(KeyCode.Mouse1))
