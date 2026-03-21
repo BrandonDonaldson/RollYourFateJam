@@ -662,7 +662,7 @@ GameObject:
   - component: {fileID: 3957257481727671508}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -675,7 +675,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7075911217616453116}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -779,6 +779,12 @@ MonoBehaviour:
   jumpForce: 15
   attackCooldown: 0.3
   attackActionCooldown: 0.15
+  maxStamina: 100
+  staminaJump: 20
+  staminaPunch: 15
+  staminaAirPunch: 30
+  staminaKick: 15
+  staminaAirKick: 30
   groundDetection: {fileID: 1245485652674705138}
   playerPhysics: {fileID: 2220359203774719700}
   attackOrigin:
@@ -799,6 +805,7 @@ MonoBehaviour:
   lastInput: 0
   timeSinceLastInput: 0
   timeSinceAttack: 0
+  stamina: 0
   currentAttackObject: {fileID: 0}
   hasUsedAirAttack: 0
   dir: 0
