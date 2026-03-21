@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     {
         get { return hp; }
     }
-    private GameObject attackObj;
+    public GameObject attackObj;
     private bool isAttacking;
     public bool IsAttacking
     {
