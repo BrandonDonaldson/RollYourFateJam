@@ -2,7 +2,9 @@ using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyManager : MonoBehaviour
@@ -26,13 +28,20 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private GameObject player;
     private float timer;
+    System.Random rnd = new System.Random();
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void OnEnable()
     {
-        //Initialization
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {//Initialization
         timer = 0f;
-        System.Random rnd = new System.Random();
         enemyList = new List<GameObject>();
         destructionList = new List<GameObject>();
         enemyList.Add(
@@ -47,16 +56,16 @@ public class EnemyManager : MonoBehaviour
         eRange3 = rangeSize * 3;
 
         //RandomX Assingment
-        enemyX1 = (float)(rnd.Next(0,(int) rangeSize)) + eRange1;
+        enemyX1 = (float)(rnd.Next(0, (int)rangeSize)) + eRange1;
         enemyX2 = (float)(rnd.Next(0, (int)rangeSize)) + eRange2;
-        enemyX3 = (float)(rnd.Next(0, (int)rangeSize))   + eRange3;
+        enemyX3 = (float)(rnd.Next(0, (int)rangeSize)) + eRange3;
 
         //Random Spawning
         //Enemies in Range 1
         CreateEnemy(enemyX1);
 
         //Enemies in Range 2
-        for(int i = 0; i<2; i++)
+        for (int i = 0; i < 2; i++)
         {
             CreateEnemy(enemyX2);
             enemyX2 = (float)(rnd.Next(0, (int)rangeSize)) + eRange2;
@@ -68,10 +77,19 @@ public class EnemyManager : MonoBehaviour
             enemyX3 = (float)(rnd.Next(0, (int)rangeSize)) + eRange3;
         }
     }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+    }
+
+    
+
+
 
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("Update");
         //Update for every enemy
         foreach (GameObject enemy in enemyList)
         {
@@ -160,5 +178,9 @@ public class EnemyManager : MonoBehaviour
                Quaternion.identity
            )
        );
+    }
+    void SpawnEnemies()
+    {
+
     }
 }
