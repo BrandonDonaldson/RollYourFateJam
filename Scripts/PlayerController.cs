@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image healthBarFill;
     [SerializeField] private Image staminaBarFill;
     [SerializeField] private TextMeshProUGUI comboText;
+    [SerializeField] private SpriteRenderer playerSprite;
 
     [Header("For Viewing")]
     [SerializeField] private bool isGrounded = false;
@@ -151,10 +152,12 @@ public class PlayerController : MonoBehaviour
         if (lastDashInput == KeyCode.D)
         {
             dir = dirData.Right;
+            playerSprite.flipX = false;
         }
         else if (lastDashInput == KeyCode.A)
         {
             dir = dirData.Left;
+            playerSprite.flipX = true;
         }
 
         if (isGrounded)
@@ -374,6 +377,11 @@ public class PlayerController : MonoBehaviour
                 timeSinceStaminaUse = 0;
             }
         }
+    }
+
+    public int GetCombo()
+    {
+        return currentCombo;
     }
 
     public void Damage(float amt)
