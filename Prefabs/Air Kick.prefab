@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8806891721812011689}
+  - component: {fileID: 7855621283596569374}
   m_Layer: 0
   m_Name: Air Kick
   m_TagString: Attack
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 6798049415571871532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7855621283596569374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 243090282279262974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 716740a1baa27e34aa4e77054f61cdff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  child: {fileID: 6036384220501108443}
 --- !u!1 &6036384220501108443
 GameObject:
   m_ObjectHideFlags: 0
@@ -43,6 +57,7 @@ GameObject:
   - component: {fileID: 6798049415571871532}
   - component: {fileID: 8887637256300757105}
   - component: {fileID: 469332179246924549}
+  - component: {fileID: 8372592634476326417}
   m_Layer: 0
   m_Name: Visual
   m_TagString: Attack
@@ -108,7 +123,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -166,3 +181,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8372592634476326417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6036384220501108443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8241b2e40e4d74b8aef3877b5d0d51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentlyTouching: []
