@@ -33,14 +33,21 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Get rid of attackObj when not attacking
         if (!isAttacking && attackObj != null)
         {
             Destroy(attackObj);
         }
     }
 
+    /// <summary>
+    /// Moves the enemy within a certain range
+    /// </summary>
+    /// <param name="leftBound">leftmost x coordinate the enemy can reach</param>
+    /// <param name="rightBound">rightmost x coordinate the enemy can reach</param>
     public void Walk(float leftBound, float rightBound)
     {
+        //move when not attacking
         if (!isAttacking)
         {
             if (transform.position.x > rightBound - .5f && !left)
@@ -68,19 +75,26 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Follow's the player's x movement if the player is near
+    /// </summary>
+    /// <param name="playerPos">the player's current position</param>
     public void Follow(Vector2 playerPos)
     {
         //Debug.Log("Following!");
+        //move when not attacking
         if (!isAttacking)
         {
             if (playerPos.x < transform.position.x)
             {
+                left = true;
                 Vector2 tempPos = transform.position;
                 tempPos -= velocity / 2.0f;
                 transform.position = tempPos;
             }
             else if (playerPos.x >= transform.position.x)
             {
+                left = false;
                 Vector2 tempPos = transform.position;
                 tempPos += velocity / 2.0f;
                 transform.position = tempPos;
@@ -88,6 +102,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Spawn the attack hitbox for the enemy
+    /// </summary>
+    /// <param name="playerPos">the player's current position</param>
     public void Attack(Vector2 playerPos)
     {
         Debug.Log("Attacking");
@@ -102,9 +120,13 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
     }
 
+    /// <summary>
+    /// Recognizes when a player's attack hitbox interacts with the enemy
+    /// </summary>
+    /// <param name="collision">attackObj for the player</param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
+        //Debug.Log(collision.gameObject.tag);
         if(collision.CompareTag("Attack"))
             {
             Debug.Log("Hit!");
