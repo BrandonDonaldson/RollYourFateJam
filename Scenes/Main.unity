@@ -393,7 +393,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 831137228629496896, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.215984
+      value: -3.77
       objectReference: {fileID: 0}
     - target: {fileID: 831137228629496896, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1389,11 +1389,6 @@ SceneRoots:
   - {fileID: 28625679}
   - {fileID: 1918530860}
   - {fileID: 1211199175508685305}
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 668bfd0 (.)
   - {fileID: 5418192836569116362}
   - {fileID: 77470010}
   - {fileID: 603052475}
@@ -1403,10 +1398,3 @@ SceneRoots:
   - {fileID: 819522396}
   - {fileID: 269173729}
   - {fileID: 1550253469}
-<<<<<<< HEAD
-=======
->>>>>>> parent of 6cae650 (Trigger Loaders)
-=======
->>>>>>> parent of 6cae650 (Trigger Loaders)
-=======
->>>>>>> parent of 668bfd0 (.)
