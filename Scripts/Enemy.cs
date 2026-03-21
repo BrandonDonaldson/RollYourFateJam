@@ -1,15 +1,19 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
     private Vector2 velocity;
     private bool left;
+    private const int maxHp = 10;
     private int hp;
     [SerializeField]
     private GameObject attackPrefab;
     [SerializeField]
     private List<GameObject> attackOrigins;
+    [SerializeField]
+    private Image healthBarFill;
     public int HP
     {
         get { return hp; }
@@ -33,6 +37,12 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        healthBarFill.fillAmount = hp / maxHp;
+        //Debug.Log("HP: " + hp);
+        if (isAttacking)
+        {
+            Debug.Log("a");
+        }
         //Get rid of attackObj when not attacking
         if (!isAttacking && attackObj != null)
         {
@@ -120,6 +130,14 @@ public class Enemy : MonoBehaviour
         isAttacking = true;
     }
 
+    public void Damage(int amt)
+    {
+        hp -= amt;
+        if (hp < 0)
+        {
+            hp = 0;
+        }
+    }
     /// <summary>
     /// Recognizes when a player's attack hitbox interacts with the enemy
     /// </summary>
@@ -129,8 +147,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log(collision.gameObject.tag);
         if(collision.CompareTag("Attack"))
             {
-            Debug.Log("Hit!");
-            hp = 0;
+            Damage(5);
         }
     }
 }
