@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject currentAttackObject;
 
     [SerializeField] private bool hasUsedAirAttack = false;
+    [SerializeField] private bool comboGainedFromCurrentAttack = false;
 
     private enum dirData
     {
@@ -82,6 +83,18 @@ public class PlayerController : MonoBehaviour
         //UI Updates
         staminaBarFill.fillAmount = stamina / maxStamina;
         comboText.text = currentCombo.ToString();
+
+        //Combo check
+        if (currentAttackObject != null && !comboGainedFromCurrentAttack)
+        {
+            print("Combo Succeeded");
+            PlayerAttack cur = currentAttackObject.GetComponent<ChildPointer>().child.GetComponent<PlayerAttack>();
+            if (cur.enemyHit)
+            {
+                comboGainedFromCurrentAttack = true;
+                currentCombo++;
+            }
+        }
 
         //Timers (Increment w/ frame time (delta time))
         timeSinceJump += Time.deltaTime;
@@ -129,7 +142,12 @@ public class PlayerController : MonoBehaviour
         {
             if (currentAttackObject != null)
             {
-              Destroy(currentAttackObject.gameObject);
+                if (!comboGainedFromCurrentAttack)
+                {
+                    currentCombo = 0;
+                }
+                Destroy(currentAttackObject.gameObject);
+                comboGainedFromCurrentAttack = false;
             }
 
             if (timeSinceAttack > attackCooldown && Input.GetKey(KeyCode.Mouse0) || timeSinceAttack > attackCooldown && Input.GetKey(KeyCode.Mouse1))
