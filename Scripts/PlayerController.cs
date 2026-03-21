@@ -25,12 +25,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float staminaAirPunch = 30f;
     [SerializeField] private float staminaKick = 15f;
     [SerializeField] private float staminaAirKick = 30f;
+    [SerializeField] private float maxHealth = 100f;
 
     [Header("Player Objects")]
     [SerializeField] private CollisionTrigger groundDetection;
     [SerializeField] private Rigidbody2D playerPhysics;
     [SerializeField] private GameObject[] attackOrigin;
     [SerializeField] private GameObject[] attackPrefabs;
+    [SerializeField] private Image healthBarFill;
     [SerializeField] private Image staminaBarFill;
     [SerializeField] private TextMeshProUGUI comboText;
 
@@ -49,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeSinceDash = 0.0f;
     [SerializeField] private float stamina = 0;
     [SerializeField] private int currentCombo = 0;
+    [SerializeField] private float health = 0;
 
     [SerializeField] private GameObject currentAttackObject;
 
@@ -67,6 +70,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         stamina = maxStamina;
+        health = maxHealth;
     }
 
     //Called every Physics Frame
@@ -92,6 +96,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //UI Updates
+        healthBarFill.fillAmount = health / maxHealth;
         staminaBarFill.fillAmount = stamina / maxStamina;
         comboText.text = currentCombo.ToString();
 
@@ -129,6 +134,17 @@ public class PlayerController : MonoBehaviour
         if (stamina < 0)
         {
             stamina = 0;
+        }
+
+        if (health > maxHealth)
+        {
+            health = maxHealth;
+        }
+
+        if (health <= 0)
+        {
+            health = 0;
+            return;
         }
 
         //Input
@@ -357,6 +373,15 @@ public class PlayerController : MonoBehaviour
                 movementVel.y = jumpForce;
                 timeSinceStaminaUse = 0;
             }
+        }
+    }
+
+    public void Damage(float amt)
+    {
+        health -= amt;
+        if (health < 0)
+        {
+            health = 0;
         }
     }
 
