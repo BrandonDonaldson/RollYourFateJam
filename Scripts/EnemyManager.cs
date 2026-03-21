@@ -25,11 +25,13 @@ public class EnemyManager : MonoBehaviour
     private Enemy enemyScript;
     [SerializeField]
     private GameObject player;
+    private float timer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Initialization
+        timer = 0f;
         System.Random rnd = new System.Random();
         enemyList = new List<GameObject>();
         destructionList = new List<GameObject>();
@@ -76,6 +78,11 @@ public class EnemyManager : MonoBehaviour
             //Gets Script
             enemyScript = enemy.GetComponent<Enemy>();
             
+            if(enemyScript.IsAttacking && timer > .25f)
+            {
+                enemyScript.IsAttacking = false;
+            }
+
             if(enemyScript.HP <= 0)
             {
                 destructionList.Add(enemy);
@@ -84,10 +91,25 @@ public class EnemyManager : MonoBehaviour
             if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 4.0f)
             {
                 enemyScript.Follow(player.transform.position);
+               // Debug.Log(timer);
+                //check for if in range
+                if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 1.0f)
+                {
+                    timer += Time.deltaTime;
+                    if (timer > 1.0f)
+                    {
+                        enemyScript.Attack(player.transform.position);
+                        timer = 0f;
+                    }
+                }
+                else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > 1.0f)
+                {
+                    timer = 0;
+                }
             }
 
             //Test Enemies
-            else if(enemy.transform.position.x < 10)
+            else if (enemy.transform.position.x < 10)
             {
                 enemyScript.Walk(-4.0f, 4.0f);
             }
@@ -95,7 +117,7 @@ public class EnemyManager : MonoBehaviour
             //Moves among bounding boxes
             else if (enemy.transform.position.x < eRange2)
             {
-                enemyScript.Walk(eRange1,eRange2);
+                enemyScript.Walk(eRange1, eRange2);
             }
             else if (enemy.transform.position.x < eRange3)
             {
@@ -103,7 +125,7 @@ public class EnemyManager : MonoBehaviour
             }
             else if (enemy.transform.position.x < mapSize)
             {
-                enemyScript.Walk(eRange3, mapSize);   
+                enemyScript.Walk(eRange3, mapSize);
             }
         }
 
