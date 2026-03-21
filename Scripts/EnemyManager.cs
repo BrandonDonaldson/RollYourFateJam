@@ -3,12 +3,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 
 public class EnemyManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemyPrefab;
     private List<GameObject> enemyList;
+    private List<GameObject> destructionList;
     [SerializeField]
     private float startingY = 0;
     [SerializeField]
@@ -21,6 +23,8 @@ public class EnemyManager : MonoBehaviour
     private float enemyX2;
     private float enemyX3;
     private Enemy enemyScript;
+    [SerializeField]
+    private GameObject player;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -28,6 +32,13 @@ public class EnemyManager : MonoBehaviour
         //Initialization
         System.Random rnd = new System.Random();
         enemyList = new List<GameObject>();
+        destructionList = new List<GameObject>();
+        enemyList.Add(
+             Instantiate(
+               enemyPrefab,
+               new Vector2(0, 1),
+               Quaternion.identity   //TEST ENEMY
+           ));
         rangeSize = mapSize / 4;
         eRange1 = rangeSize;
         eRange2 = rangeSize * 2;
@@ -59,10 +70,30 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Update for every enemy
         foreach (GameObject enemy in enemyList)
         {
+            //Gets Script
             enemyScript = enemy.GetComponent<Enemy>();
-            if (enemy.transform.position.x < eRange2)
+            
+            if(enemyScript.HP <= 0)
+            {
+                destructionList.Add(enemy);
+            }
+            //Check if player is in range to follow
+            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 4.0f)
+            {
+                enemyScript.Follow(player.transform.position);
+            }
+
+            //Test Enemies
+            else if(enemy.transform.position.x < 10)
+            {
+                enemyScript.Walk(-4.0f, 4.0f);
+            }
+
+            //Moves among bounding boxes
+            else if (enemy.transform.position.x < eRange2)
             {
                 enemyScript.Walk(eRange1,eRange2);
             }
@@ -75,8 +106,16 @@ public class EnemyManager : MonoBehaviour
                 enemyScript.Walk(eRange3, mapSize);   
             }
         }
+
+        foreach (GameObject enemy in destructionList)
+        {
+            enemyList.Remove(enemy);
+            Destroy(enemy);
+        }
+        destructionList.Clear();
     }
 
+    //Instantiation code
     void CreateEnemy(float xValue)
     {
         enemyList.Add(
