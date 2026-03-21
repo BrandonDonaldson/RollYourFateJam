@@ -707,6 +707,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd6c4027a26ce974f932a5a8460fb8ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  render: {fileID: 0}
+  animations:
+  - {fileID: 11400000, guid: db9cb6ad41712864d8a5e4441915bb7f, type: 2}
+  timePerFrame: 0.5
+  currentAnimationIndex: 0
+  currentFrame: 0
+  frameTimer: 0
 --- !u!4 &802192476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6951388283565815586, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
