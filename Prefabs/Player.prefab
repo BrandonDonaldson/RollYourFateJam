@@ -1429,13 +1429,17 @@ MonoBehaviour:
   gravityStrength: -0.96
   movementSpeed: 10
   jumpForce: 15
+  dashForce: 75
+  dashDecay: 0.85
+  dashInputWindow: 0.225
   jumpCooldown: 0.1
   attackCooldown: 0.2
-  attackActionCooldown: 0.15
+  actionCooldown: 0.25
   staminaRechargeCooldown: 0.35
   staminaRegenerationRate: 100
   maxStamina: 100
   staminaJump: 20
+  staminaDash: 50
   staminaPunch: 15
   staminaAirPunch: 30
   staminaKick: 15
@@ -1456,18 +1460,19 @@ MonoBehaviour:
   comboText: {fileID: 1848150260119722929}
   isGrounded: 0
   movementVel: {x: 0, y: 0}
-  environmentVel: {x: 0, y: 0}
-  naturalVel: {x: 0, y: 0}
+  additionalVel: {x: 0, y: 0}
   velocity: {x: 0, y: 0}
-  lastInput: 0
-  timeSinceLastInput: 5
+  lastDashInput: 0
+  timeSinceDashInput: 0
   timeSinceAttack: 5
   timeSinceStaminaUse: 5
   timeSinceJump: 5
+  timeSinceDash: 0
   stamina: 100
   currentCombo: 0
   currentAttackObject: {fileID: 0}
   hasUsedAirAttack: 0
+  comboGainedFromCurrentAttack: 0
   dir: 0
 --- !u!1 &7419509768165346971
 GameObject:
