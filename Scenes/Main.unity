@@ -1667,8 +1667,52 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: stamina
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: lastInput
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: isGrounded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: timeSinceJump
+      value: 4.994264
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
       propertyPath: attackCooldown
       value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: staminaBarFill
+      value: 
+      objectReference: {fileID: 322373926}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: timeSinceAttack
+      value: 3.6884358
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: timeSinceLastInput
+      value: 2.9092472
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: currentAttackObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: timeSinceStaminaUse
+      value: 3.6884358
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: staminaRechargeCooldown
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: staminaRegenerationRate
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6108217634633577419, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
       propertyPath: m_LocalPosition.x

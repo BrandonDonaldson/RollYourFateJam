@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float gravityStrength = -9.6f;
     [SerializeField] private float movementSpeed = 5f;
     [SerializeField] private float jumpForce = 25f;
+    [SerializeField] private float jumpCooldown = 0.1f;
     [SerializeField] private float attackCooldown = 1.0f;
     [SerializeField] private float attackActionCooldown = 0.25f;
     [SerializeField] private float staminaRechargeCooldown = 0.5f;
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeSinceLastInput = 0.0f;
     [SerializeField] private float timeSinceAttack = 0.0f;
     [SerializeField] private float timeSinceStaminaUse = 0.0f;
+    [SerializeField] private float timeSinceJump = 0.0f;
     [SerializeField] private float stamina = 0;
 
     [SerializeField] private GameObject currentAttackObject;
@@ -73,13 +75,14 @@ public class PlayerController : MonoBehaviour
     {
         staminaBarFill.fillAmount = stamina / maxStamina;
 
+        timeSinceJump += Time.deltaTime;
         timeSinceAttack += Time.deltaTime;
         timeSinceLastInput += Time.deltaTime;
         timeSinceStaminaUse+= Time.deltaTime;
 
         if (timeSinceStaminaUse >= staminaRechargeCooldown)
         {
-            stamina += staminaRegenerationRate;
+            stamina += staminaRegenerationRate*Time.deltaTime;
 
             if (stamina > maxStamina)
             {
@@ -255,19 +258,15 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            if (Input.GetKey(KeyCode.Space) && isGrounded && stamina >= staminaJump)
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded && stamina >= staminaJump && timeSinceJump >= jumpCooldown)
             {
                 //JUMP triggered here!
+                timeSinceJump = 0;
                 stamina -= staminaJump;
                 movementVel.y = jumpForce;
                 lastInput = KeyCode.Space;
                 timeSinceLastInput = 0;
                 timeSinceStaminaUse = 0;
-            }
-
-            if (!Input.GetKey(KeyCode.Space) && isGrounded)
-            {
-                movementVel.y = 0;
             }
         }
     }
@@ -278,6 +277,11 @@ public class PlayerController : MonoBehaviour
         {
             if (groundDetection.currentlyTouching[i].tag == "Ground")
             {
+                if (!isGrounded)
+                {
+                    //Just landed on ground
+                    movementVel.y = 0;
+                }
                 isGrounded = true;
                 return;
             }
