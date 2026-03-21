@@ -78,11 +78,13 @@ public class EnemyManager : MonoBehaviour
             //Gets Script
             enemyScript = enemy.GetComponent<Enemy>();
             
+            //Attack timer
             if(enemyScript.IsAttacking && timer > .25f)
             {
                 enemyScript.IsAttacking = false;
             }
 
+            //Enemy is dead
             if(enemyScript.HP <= 0)
             {
                 destructionList.Add(enemy);
@@ -92,16 +94,20 @@ public class EnemyManager : MonoBehaviour
             {
                 enemyScript.Follow(player.transform.position);
                // Debug.Log(timer);
-                //check for if in range
+                //check if in range to attack
                 if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 1.0f)
                 {
                     timer += Time.deltaTime;
+
+                    //attack after 1 second in range
                     if (timer > 1.0f)
                     {
                         enemyScript.Attack(player.transform.position);
                         timer = 0f;
                     }
                 }
+
+                //reset timer once player leaves range
                 else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > 1.0f)
                 {
                     timer = 0;
@@ -129,19 +135,24 @@ public class EnemyManager : MonoBehaviour
             }
         }
 
+        //Destroy "Dead" enemies
         foreach (GameObject enemy in destructionList)
         {
             enemyScript = enemy.GetComponent<Enemy>();
-            enemyList.Remove(enemy);
-            DestroyImmediate(enemyScript.attackObj, true); //Deletes current attackObj if active
-            Destroy(enemy);
+            enemyList.Remove(enemy); //remove from active list
+            DestroyImmediate(enemyScript.attackObj, true); //Deletes current attackObj if active while enemy is "dead"
+            Destroy(enemy); //Delete enemy
         }
         destructionList.Clear();
     }
 
-    //Instantiation code
+    /// <summary>
+    /// Instantiates an enemy at a specific x coordinate
+    /// </summary>
+    /// <param name="xValue">the randomized x coordinate to spawn the enemy at</param>
     void CreateEnemy(float xValue)
     {
+        //append to enemyList
         enemyList.Add(
            Instantiate(
                enemyPrefab,

@@ -674,6 +674,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &770776406 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7075911217616453116, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+  m_PrefabInstance: {fileID: 1211199175508685305}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &802192476 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6951388283565815586, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
@@ -1517,7 +1522,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
+--- !u!1 &2130436108
+=======
 --- !u!1 &2061962323
+>>>>>>> b2daec7556fd1a4e31867da3055e8dddee95d91a
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1525,16 +1534,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
+  - component: {fileID: 2130436110}
+  - component: {fileID: 2130436109}
+  m_Layer: 0
+  m_Name: EnemyManagerGO
+=======
   - component: {fileID: 2061962324}
   - component: {fileID: 2061962326}
   - component: {fileID: 2061962325}
   m_Layer: 5
   m_Name: Health Bar
+>>>>>>> b2daec7556fd1a4e31867da3055e8dddee95d91a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD
+--- !u!114 &2130436109
+=======
 --- !u!224 &2061962324
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1555,11 +1574,26 @@ RectTransform:
   m_SizeDelta: {x: 390, y: 18.75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2061962325
+>>>>>>> b2daec7556fd1a4e31867da3055e8dddee95d91a
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 2130436108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfc93acb17d1e7b4aa1cec6d1e575219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 7147387636732185341, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
+  startingY: 0
+  mapSize: 200
+  player: {fileID: 770776406}
+--- !u!4 &2130436110
+Transform:
+=======
   m_GameObject: {fileID: 2061962323}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -1586,12 +1620,25 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &2061962326
 CanvasRenderer:
+>>>>>>> b2daec7556fd1a4e31867da3055e8dddee95d91a
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
+  m_GameObject: {fileID: 2130436108}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.3615077, y: -0.4179787, z: 0.0374804}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
   m_GameObject: {fileID: 2061962323}
   m_CullTransparentMesh: 1
+>>>>>>> b2daec7556fd1a4e31867da3055e8dddee95d91a
 --- !u!1 &2136155787
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,3 +1813,4 @@ SceneRoots:
   - {fileID: 269173729}
   - {fileID: 1550253469}
   - {fileID: 1918564667}
+  - {fileID: 2130436110}
