@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,8 @@ public class Enemy : MonoBehaviour
     private List<GameObject> attackOrigins;
     [SerializeField]
     private Image healthBarFill;
+    private float timer;
+    private bool isHit;
     public int HP
     {
         get { return hp; }
@@ -32,12 +35,23 @@ public class Enemy : MonoBehaviour
         left = true;
         isAttacking = false;
         hp = 10; //default num
+        isHit = false;
+        timer = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        healthBarFill.fillAmount = hp / maxHp;
+        if (isHit)
+        {
+            timer += Time.deltaTime;
+        }
+        else if(timer >= .5f)
+        {
+            timer = 0;
+            isHit=false;
+        }
+            healthBarFill.fillAmount = (float) hp / (float) maxHp;
         //Debug.Log("HP: " + hp);
         if (isAttacking)
         {
@@ -137,6 +151,7 @@ public class Enemy : MonoBehaviour
         {
             hp = 0;
         }
+        Debug.Log("Hit for 5 damage. Hp is now " + hp);
     }
     /// <summary>
     /// Recognizes when a player's attack hitbox interacts with the enemy
@@ -146,7 +161,8 @@ public class Enemy : MonoBehaviour
     {
         //Debug.Log(collision.gameObject.tag);
         if(collision.CompareTag("Attack"))
-            {
+        { 
+            isHit = true;
             Damage(5);
         }
     }
