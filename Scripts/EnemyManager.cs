@@ -131,7 +131,9 @@ public class EnemyManager : MonoBehaviour
 
         foreach (GameObject enemy in destructionList)
         {
+            enemyScript = enemy.GetComponent<Enemy>();
             enemyList.Remove(enemy);
+            DestroyImmediate(enemyScript.attackObj, true); //Deletes current attackObj if active
             Destroy(enemy);
         }
         destructionList.Clear();
