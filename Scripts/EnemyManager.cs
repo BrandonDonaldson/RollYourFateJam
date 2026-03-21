@@ -82,9 +82,6 @@ public class EnemyManager : MonoBehaviour
     {
     }
 
-    
-
-
 
     // Update is called once per frame
     void Update()
@@ -178,9 +175,5 @@ public class EnemyManager : MonoBehaviour
                Quaternion.identity
            )
        );
-    }
-    void SpawnEnemies()
-    {
-
     }
 }
