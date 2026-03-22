@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
         enemyList.Add(
              Instantiate(
                enemyPrefab,
-               new Vector2(0, 1),
+               new Vector2(0, startingY),
                Quaternion.identity   //TEST ENEMY
            ));
         rangeSize = mapSize / 4;
