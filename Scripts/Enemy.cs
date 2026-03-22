@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         attackTimer = 0;
-        velocity = new Vector2(.005f, 0);
+        velocity = new Vector2(.05f, 0);
         left = true;
         isAttacking = false;
         hp = 10; //default num
@@ -187,7 +187,7 @@ public class Enemy : MonoBehaviour
     {
         if (velocity.x == 0)
         {
-            velocity = new Vector2(.005f, 0);
+            velocity = new Vector2(.05f, 0);
         }
     }
     /// <summary>
