@@ -6143,7 +6143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7147387636732185341, guid: 40a22c4f2d423bb47a5776b667ac2faa, type: 3}
-  startingY: -1
+  startingY: 0
   mapSize: 200
   player: {fileID: 8285960277112523781}
 --- !u!4 &1735339119
