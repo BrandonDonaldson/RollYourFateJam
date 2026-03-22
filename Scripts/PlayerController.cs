@@ -75,6 +75,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioSource aPunch;
     [SerializeField] private AudioSource aKick;
     [SerializeField] private AudioSource dash;
+    [SerializeField] private AudioSource death;
 
     private enum dirData
     {
@@ -194,6 +195,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
+            death.Play();
             SceneManager.LoadScene("DeadScene");
             return;
         }
