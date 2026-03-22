@@ -31,7 +31,6 @@ public class EnemyManager : MonoBehaviour
     private float timer;
     System.Random rnd = new System.Random();
     [SerializeField]
-    private int enemyScore;
 
     void OnEnable()
     {
@@ -46,7 +45,6 @@ public class EnemyManager : MonoBehaviour
     {//Initialization
         timer = 0f;
         playerScript = player.GetComponent<PlayerController>();
-        enemyScore = 0;
         enemyList = new List<GameObject>();
         destructionList = new List<GameObject>();
         enemyList.Add(
@@ -97,9 +95,9 @@ public class EnemyManager : MonoBehaviour
         {
             //Gets Script
             enemyScript = enemy.GetComponent<Enemy>();
-            
+            enemyScript.indicator.GetComponent<SpriteRenderer>().enabled = false;
             //Attack timer
-            if(enemyScript.IsAttacking && timer > .25f)
+            if (enemyScript.IsAttacking && enemyScript.attackTimer > .25f)
             {
                 enemyScript.IsAttacking = false;
                 
@@ -109,53 +107,67 @@ public class EnemyManager : MonoBehaviour
             if(enemyScript.HP <= 0)
             {
                 destructionList.Add(enemy);
-                enemyScore++;
                 PointManager.Instance.UpdateScore(100,playerScript.CurrentCombo);
 
             }
-            //Check if player is in range to follow
-            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 4.0f)
+            if(Math.Abs(player.transform.position.x - enemy.transform.position.x) < .5f)
             {
+                enemyScript.Stop();
+            }
+            //Check if player is in range to follow
+            else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 4.0f && Math.Abs(player.transform.position.x - enemy.transform.position.x) > .5f)
+            {
+                enemyScript.indicator.GetComponent<SpriteRenderer>().enabled = true;
+                enemyScript.Restart();
                 enemyScript.Follow(player.transform.position);
-               // Debug.Log(timer);
-                //check if in range to attack
-                if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 1.0f)
-                {
-                    timer += Time.deltaTime;
-
-                    //attack after 1 second in range
-                    if (timer > 1.0f)
-                    {
-                        enemyScript.Attack(player.transform.position);
-                        timer = 0f;
-                    }
-                }
-
-                //reset timer once player leaves range
-                else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > 1.0f)
-                {
-                    timer = 0;
-                }
             }
 
             //Test Enemies
             else if (enemy.transform.position.x < 10)
             {
+                enemyScript.indicator.GetComponent<SpriteRenderer>().enabled = false;
+                enemyScript.Restart();
                 enemyScript.Walk(-4.0f, 4.0f);
             }
 
             //Moves among bounding boxes
-            else if (enemy.transform.position.x < eRange2)
+            else if (enemy.transform.position.x < eRange2 && Math.Abs(player.transform.position.x - enemy.transform.position.x) > .5f)
             {
+                enemyScript.indicator.GetComponent<SpriteRenderer>().enabled = false;
+                enemyScript.Restart();
                 enemyScript.Walk(eRange1, eRange2);
             }
-            else if (enemy.transform.position.x < eRange3)
+            else if (enemy.transform.position.x < eRange3 && Math.Abs(player.transform.position.x - enemy.transform.position.x) > .5f)
             {
+                enemyScript.indicator.GetComponent<SpriteRenderer>().enabled = false;
+                enemyScript.Restart();
                 enemyScript.Walk(eRange2, eRange3);
             }
-            else if (enemy.transform.position.x < mapSize)
+            else if (enemy.transform.position.x < mapSize && Math.Abs(player.transform.position.x - enemy.transform.position.x) > .5f)
             {
+                enemyScript.indicator.GetComponent<SpriteRenderer>().enabled = false;
+                enemyScript.Restart();
                 enemyScript.Walk(eRange3, mapSize);
+            }
+
+            // Debug.Log(timer);
+            //check if in range to attack
+            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 1.0f)
+            {
+                enemyScript.attackTimer += Time.deltaTime;
+                //attack after 1 second in range
+                if (enemyScript.attackTimer > 1.0f)
+                {
+                    Debug.Log("Attacking");
+                    enemyScript.Attack(player.transform.position);
+                    enemyScript.attackTimer = 0f;
+                }
+            }
+
+            //reset timer once player leaves range
+            else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > 1.0f)
+            {
+                enemyScript.attackTimer = 0;
             }
         }
 
@@ -164,7 +176,7 @@ public class EnemyManager : MonoBehaviour
         {
             enemyScript = enemy.GetComponent<Enemy>();
             enemyList.Remove(enemy); //remove from active list
-            DestroyImmediate(enemyScript.attackObj, true); //Deletes current attackObj if active while enemy is "dead"
+            Destroy(enemyScript.attackObj); //Deletes current attackObj if active while enemy is "dead"
             Destroy(enemy); //Delete enemy
         }
         destructionList.Clear();

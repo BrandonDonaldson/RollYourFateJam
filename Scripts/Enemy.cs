@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    private Vector2 velocity;
+    [SerializeField] private Vector2 velocity;
     private bool left;
     private const int maxHp = 10;
     private int hp;
@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     private List<GameObject> attackOrigins;
     [SerializeField]
     private Image healthBarFill;
+    [SerializeField]
+    public GameObject indicator;
     private float timer;
     private bool isHit;
     public int HP
@@ -28,10 +30,12 @@ public class Enemy : MonoBehaviour
         get { return isAttacking; }
         set { isAttacking = value; }
     }
+    public float attackTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        velocity = new Vector2(.01f, 0);
+        attackTimer = 0;
+        velocity = new Vector2(.005f, 0);
         left = true;
         isAttacking = false;
         hp = 10; //default num
@@ -113,14 +117,14 @@ public class Enemy : MonoBehaviour
             {
                 left = true;
                 Vector2 tempPos = transform.position;
-                tempPos -= velocity / 2.0f;
+                tempPos -= velocity;
                 transform.position = tempPos;
             }
             else if (playerPos.x >= transform.position.x)
             {
                 left = false;
                 Vector2 tempPos = transform.position;
-                tempPos += velocity / 2.0f;
+                tempPos += velocity;
                 transform.position = tempPos;
             }
         }
@@ -152,6 +156,19 @@ public class Enemy : MonoBehaviour
             hp = 0;
         }
         Debug.Log("Hit for 5 damage. Hp is now " + hp);
+    }
+
+    public void Stop()
+    {
+        velocity = new Vector2(0, 0);
+    }
+
+    public void Restart()
+    {
+        if (velocity.x == 0)
+        {
+            velocity = new Vector2(.005f, 0);
+        }
     }
     /// <summary>
     /// Recognizes when a player's attack hitbox interacts with the enemy
