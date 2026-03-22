@@ -5,16 +5,21 @@ public class AnimatedObject : MonoBehaviour
 
     public SpriteRenderer render;
     public AnimationObject[] animations;
-    public float timePerFrame = 0.5f;
 
     [Header("View Only")]
     public int currentAnimationIndex = -1;
     public int currentFrame = 0;
-    public float frameTimer;
+    public float frameTimer = 0;
+    public float timePerFrame = 0.5f;
 
     public void PlayAnim(int index)
     {
+        if (currentAnimationIndex == index)
+        {
+            return;
+        }
         currentAnimationIndex = index;
+        timePerFrame = animations[currentAnimationIndex].timeBetweenFrames;
         currentFrame = 0;
         frameTimer = 0;
     }
@@ -31,7 +36,14 @@ public class AnimatedObject : MonoBehaviour
                 currentFrame++;
                 if (currentFrame >= animations[currentAnimationIndex].animFrames.Length)
                 {
-                    currentFrame = 0;
+                    if (animations[currentAnimationIndex].looping)
+                    {
+                        currentFrame = 0;
+                    }
+                    else
+                    {
+                        currentFrame = animations[currentAnimationIndex].animFrames.Length - 1;
+                    }
                 }
 
                 render.sprite = animations[currentAnimationIndex].animFrames[currentFrame];

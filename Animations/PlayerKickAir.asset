@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974553be25b5ea846bc55f7806f8294d, type: 3}
+  m_Name: PlayerKickAir
+  m_EditorClassIdentifier: 
+  animFrames:
+  - {fileID: -938658608654533949, guid: d9c2554bb1d36374ab18d63187f28888, type: 3}
+  timeBetweenFrames: 0.12
+  looping: 0

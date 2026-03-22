@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image staminaBarFill;
     [SerializeField] private TextMeshProUGUI comboText;
     [SerializeField] private SpriteRenderer playerSprite;
+    [SerializeReference] private AnimatedObject playerAnim;
 
     [Header("For Viewing")]
     [SerializeField] private bool isGrounded = false;
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         stamina = maxStamina;
         health = maxHealth;
+        timeSinceAttack = 20;
     }
 
     //Called every Physics Frame
@@ -105,6 +107,34 @@ public class PlayerController : MonoBehaviour
         healthBarFill.fillAmount = health / maxHealth;
         staminaBarFill.fillAmount = stamina / maxStamina;
         comboText.text = currentCombo.ToString();
+
+        //Animation Check
+        if (timeSinceAttack > actionCooldown)
+        {
+            if (playerPhysics.linearVelocityY < 0 && movementVel.y < 0 && !isGrounded)
+            {
+                playerAnim.PlayAnim(3);
+            }
+            else
+            {
+                if (movementVel.y != 0 && !isGrounded)
+                {
+                    playerAnim.PlayAnim(2);
+                }
+                else
+                {
+                    if (movementVel.x > movementSpeed * .5f && playerPhysics.linearVelocityX > movementSpeed * 0.5f || movementVel.x < movementSpeed * -0.5f && playerPhysics.linearVelocityX < movementSpeed * -0.5f)
+                    {
+                        playerAnim.PlayAnim(1);
+                    }
+                    else
+                    {
+                        playerAnim.PlayAnim(0);
+                    }
+                }
+            }
+        }
+        
 
         //Combo check
         if (currentAttackObject != null && !comboGainedFromCurrentAttack)
@@ -202,6 +232,7 @@ public class PlayerController : MonoBehaviour
                             lastDashInput = KeyCode.Mouse0;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
+                            playerAnim.PlayAnim(4);
 
                             if (isGrounded)
                             {
@@ -228,6 +259,7 @@ public class PlayerController : MonoBehaviour
                             lastDashInput = KeyCode.Mouse0;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
+                            playerAnim.PlayAnim(5);
 
                             if (isGrounded)
                             {
@@ -257,6 +289,7 @@ public class PlayerController : MonoBehaviour
                             lastDashInput = KeyCode.Mouse1;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
+                            playerAnim.PlayAnim(6);
 
                             if (isGrounded)
                             {
@@ -283,6 +316,7 @@ public class PlayerController : MonoBehaviour
                             lastDashInput = KeyCode.Mouse1;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
+                            playerAnim.PlayAnim(7);
 
                             if (isGrounded)
                             {

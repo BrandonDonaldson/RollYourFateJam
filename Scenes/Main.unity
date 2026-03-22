@@ -1812,46 +1812,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 195977311580108431, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.987
+    - target: {fileID: 452356735668935348, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: animations.Array.size
+      value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 335384978585640617, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_Size.y
-      value: 1.9834652
-      objectReference: {fileID: 0}
-    - target: {fileID: 335384978585640617, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_Material
+    - target: {fileID: 452356735668935348, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: 'animations.Array.data[2]'
       value: 
-      objectReference: {fileID: 6200000, guid: 731847b54356004458a7ffb1e0263e11, type: 2}
-    - target: {fileID: 335384978585640617, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.008267432
-      objectReference: {fileID: 0}
-    - target: {fileID: 995643067764748855, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_Size.y
-      value: 0.005
-      objectReference: {fileID: 0}
-    - target: {fileID: 995643067764748855, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_Material
+      objectReference: {fileID: 11400000, guid: a4adf3f4f772fc244980ef2c50e2609f, type: 2}
+    - target: {fileID: 452356735668935348, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: 'animations.Array.data[3]'
       value: 
-      objectReference: {fileID: 6200000, guid: 731847b54356004458a7ffb1e0263e11, type: 2}
-    - target: {fileID: 3115248936878801735, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -81
-      objectReference: {fileID: 0}
-    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: playerSprite
+      objectReference: {fileID: 11400000, guid: 8d6ffa05c28ee2e4ab57019c5349015f, type: 2}
+    - target: {fileID: 452356735668935348, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: 'animations.Array.data[4]'
       value: 
-      objectReference: {fileID: 1504465047}
-    - target: {fileID: 3957257481727671508, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: healthBarFill
+      objectReference: {fileID: 11400000, guid: de07203680e69d646a8bf4f9c0f3e632, type: 2}
+    - target: {fileID: 452356735668935348, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: 'animations.Array.data[5]'
       value: 
-      objectReference: {fileID: 2061962325}
-    - target: {fileID: 4090048344173496475, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_Sprite
+      objectReference: {fileID: 11400000, guid: e5e49f6205393de4d99d7ed7c1ee587c, type: 2}
+    - target: {fileID: 452356735668935348, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: 'animations.Array.data[6]'
       value: 
-      objectReference: {fileID: -5115618752126089108, guid: 8239043193417c241b4ee7c667bf48dd, type: 3}
+      objectReference: {fileID: 11400000, guid: 0ac3880e701a5eb498d8e7b382f98251, type: 2}
+    - target: {fileID: 452356735668935348, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
+      propertyPath: 'animations.Array.data[7]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b7f86f2a07a6b6847b90a719bda73223, type: 2}
     - target: {fileID: 6108217634633577419, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1895,10 +1883,6 @@ PrefabInstance:
     - target: {fileID: 7075911217616453116, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 8711117109165301199, guid: af2583dadad53f942a89043d28ddf84a, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
