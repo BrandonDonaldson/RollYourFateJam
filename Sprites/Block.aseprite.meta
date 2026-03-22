@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9af9542041672b94598b58df801767a8
+guid: 9ed00ddc548c1f74aa72a1d3c191975d
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -127,9 +127,9 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: player_jump
+  - name: Block
     originalName: 
-    pivot: {x: 1.0517241, y: 0}
+    pivot: {x: 0.5, y: 0}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
@@ -137,9 +137,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 58
-      height: 28
-    spriteID: 479f0ae45f688f44aba995603eee1d3f
+      width: 16
+      height: 16
+    spriteID: 0cb66bf457613a74ea4f12ca47c8c84f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -153,45 +153,33 @@ ScriptedImporter:
   asepriteLayers:
   - layerIndex: 0
     uuid:
-      value0: 2166812228
+      value0: 3745862197
       value1: 0
       value2: 0
       value3: 0
     guid: 0
-    name: player_jump
+    name: Block
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: player_jump
+    - name: Block
       frameIndex: 0
       additiveSortOrder: 0
       cellRect:
-        x: 3
+        x: 0
         y: 0
-        width: 58
-        height: 28
-      spriteId: 479f0ae45f688f44aba995603eee1d3f
+        width: 16
+        height: 16
+      spriteId: 0cb66bf457613a74ea4f12ca47c8c84f
     linkedCells: []
     tileCells: []
     tileSetIndex: 0
     parentIndex: -1
   tileSets: []
-  platformSettings:
-  - name: Default
-    overridden: 0
-    ignorePlatformSupport: 0
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    androidETC2FallbackOverride: 0
+  platformSettings: []
   generatePhysicsShape: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 128, y: 32}
-  previousTextureSize: {x: 128, y: 64}
+  canvasSize: {x: 16, y: 16}
+  previousTextureSize: {x: 32, y: 32}
