@@ -17,6 +17,11 @@ public class Enemy : MonoBehaviour
     private Image healthBarFill;
     [SerializeField]
     public GameObject indicator;
+
+    public bool inRange;
+    [SerializeField] private SpriteRenderer render;
+    [SerializeField] private AnimatedObject anim;
+
     private float timer;
     private bool isHit;
     public int HP
@@ -46,6 +51,18 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!isAttacking && inRange)
+        {
+            anim.PlayAnim(0);
+        }
+        if (left)
+        {
+            render.flipX = true;
+        }
+        else
+        {
+            render.flipX = false;
+        }
         if (isHit)
         {
             timer += Time.deltaTime;
@@ -76,8 +93,9 @@ public class Enemy : MonoBehaviour
     public void Walk(float leftBound, float rightBound)
     {
         //move when not attacking
-        if (!isAttacking)
+        if (!isAttacking && !inRange)
         {
+            anim.PlayAnim(1);
             if (transform.position.x > rightBound - .5f && !left)
             {
                 //Debug.Log("RightBound" + rightBound + "Xval = " + transform.transform.position.x);
@@ -111,8 +129,9 @@ public class Enemy : MonoBehaviour
     {
         //Debug.Log("Following!");
         //move when not attacking
-        if (!isAttacking)
+        if (!isAttacking && !inRange)
         {
+            anim.PlayAnim(1);
             if (playerPos.x < transform.position.x)
             {
                 left = true;
@@ -136,6 +155,7 @@ public class Enemy : MonoBehaviour
     /// <param name="playerPos">the player's current position</param>
     public void Attack(Vector2 playerPos)
     {
+        anim.PlayAnim(2);
         Debug.Log("Attacking");
         if(playerPos.x < transform.position.x)
         {

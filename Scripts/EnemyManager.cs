@@ -149,10 +149,13 @@ public class EnemyManager : MonoBehaviour
                 enemyScript.Walk(eRange3, mapSize);
             }
 
+            float followingDist = 1;
+
             // Debug.Log(timer);
             //check if in range to attack
-            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 1.0f)
+            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= followingDist)
             {
+                enemyScript.inRange = true;
                 enemyScript.attackTimer += Time.deltaTime;
                 //attack after 1 second in range
                 if (enemyScript.attackTimer > 1.0f)
@@ -163,9 +166,11 @@ public class EnemyManager : MonoBehaviour
                 }
             }
 
+
             //reset timer once player leaves range
-            else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > 1.0f)
+            else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > followingDist)
             {
+                enemyScript.inRange = false;
                 enemyScript.attackTimer = 0;
             }
         }

@@ -446,6 +446,7 @@ GameObject:
   - component: {fileID: 6951388283565815586}
   - component: {fileID: 4534723309201817808}
   - component: {fileID: 9017472263016001054}
+  - component: {fileID: 6769110623763262515}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -538,8 +539,31 @@ MonoBehaviour:
   - {fileID: 5013077126328108455}
   healthBarFill: {fileID: 8026147832773802854}
   indicator: {fileID: 8812400830623230110}
+  render: {fileID: 8582041632701298925}
+  anim: {fileID: 6769110623763262515}
   attackObj: {fileID: 0}
   attackTimer: 0
+--- !u!114 &6769110623763262515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7147387636732185341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd6c4027a26ce974f932a5a8460fb8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimatedObject
+  render: {fileID: 8582041632701298925}
+  animations:
+  - {fileID: 11400000, guid: db9cb6ad41712864d8a5e4441915bb7f, type: 2}
+  - {fileID: 11400000, guid: 486ac18cee9153241ad2df9228aec81a, type: 2}
+  - {fileID: 11400000, guid: de07203680e69d646a8bf4f9c0f3e632, type: 2}
+  currentAnimationIndex: -1
+  currentFrame: 0
+  frameTimer: 0
+  timePerFrame: 0.5
 --- !u!1 &7760776305398145864
 GameObject:
   m_ObjectHideFlags: 0
