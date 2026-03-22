@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PlayerKickAir
   m_EditorClassIdentifier: 
   animFrames:
-  - {fileID: -938658608654533949, guid: d9c2554bb1d36374ab18d63187f28888, type: 3}
-  timeBetweenFrames: 0.12
+  - {fileID: -8667083633493801604, guid: 384f254140212b44e914e8b1cab61b8f, type: 3}
+  - {fileID: -475857710674647040, guid: 384f254140212b44e914e8b1cab61b8f, type: 3}
+  - {fileID: 3527506757860325100, guid: 384f254140212b44e914e8b1cab61b8f, type: 3}
+  - {fileID: -2261001325846763101, guid: 384f254140212b44e914e8b1cab61b8f, type: 3}
+  timeBetweenFrames: 0.05
   looping: 0
