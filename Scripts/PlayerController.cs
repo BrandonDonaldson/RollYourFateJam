@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
@@ -52,6 +53,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeSinceDash = 0.0f;
     [SerializeField] private float stamina = 0;
     [SerializeField] private int currentCombo = 0;
+    public int CurrentCombo
+    {
+        get { return currentCombo; }
+    }
     [SerializeField] private float health = 0;
 
     [SerializeField] private GameObject currentAttackObject;
@@ -145,6 +150,7 @@ public class PlayerController : MonoBehaviour
         if (health <= 0)
         {
             health = 0;
+            SceneManager.LoadScene("DeadScene");
             return;
         }
 

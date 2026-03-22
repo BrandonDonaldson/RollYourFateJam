@@ -25,10 +25,13 @@ public class EnemyManager : MonoBehaviour
     private float enemyX2;
     private float enemyX3;
     private Enemy enemyScript;
+    private PlayerController playerScript;
     [SerializeField]
     private GameObject player;
     private float timer;
     System.Random rnd = new System.Random();
+    [SerializeField]
+    private int enemyScore;
 
     void OnEnable()
     {
@@ -42,6 +45,8 @@ public class EnemyManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {//Initialization
         timer = 0f;
+        playerScript = player.GetComponent<PlayerController>();
+        enemyScore = 0;
         enemyList = new List<GameObject>();
         destructionList = new List<GameObject>();
         enemyList.Add(
@@ -86,7 +91,7 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Update");
+        //Debug.Log("Update");
         //Update for every enemy
         foreach (GameObject enemy in enemyList)
         {
@@ -97,12 +102,16 @@ public class EnemyManager : MonoBehaviour
             if(enemyScript.IsAttacking && timer > .25f)
             {
                 enemyScript.IsAttacking = false;
+                
             }
 
             //Enemy is dead
             if(enemyScript.HP <= 0)
             {
                 destructionList.Add(enemy);
+                enemyScore++;
+                PointManager.Instance.UpdateScore(100,playerScript.CurrentCombo);
+
             }
             //Check if player is in range to follow
             if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 4.0f)
