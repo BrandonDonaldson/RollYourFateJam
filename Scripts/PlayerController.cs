@@ -407,10 +407,10 @@ public class PlayerController : MonoBehaviour
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded && stamina >= staminaJump && timeSinceJump >= jumpCooldown)
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded && stamina >= staminaJump && timeSinceJump >= jumpCooldown)
             {
                 //JUMP triggered here!
-                lastDashInput = KeyCode.Space;
+                lastDashInput = KeyCode.W;
                 timeSinceJump = 0;
                 stamina -= staminaJump;
                 movementVel.y = jumpForce;
