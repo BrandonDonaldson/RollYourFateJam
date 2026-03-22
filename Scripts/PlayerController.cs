@@ -229,7 +229,9 @@ public class PlayerController : MonoBehaviour
                 {
                     currentCombo = 0;
                 }
-                Destroy(currentAttackObject.gameObject);
+                Destroy(currentAttackObject.gameObject, 5f);
+                currentAttackObject.GetComponent<ChildPointer>().child.GetComponent<BoxCollider2D>().enabled = false;
+                currentAttackObject = null;
                 comboGainedFromCurrentAttack = false;
             }
 
