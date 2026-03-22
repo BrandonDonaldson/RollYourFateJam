@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
 {
     [SerializeField]
     private GameObject enemyPrefab;
+    [SerializeField]
     private List<GameObject> enemyList;
     private List<GameObject> destructionList;
     [SerializeField]
@@ -30,10 +31,13 @@ public class EnemyManager : MonoBehaviour
     private GameObject player;
     private float timer;
     System.Random rnd = new System.Random();
+    [SerializeField]
+    GameObject[] foundList;
 
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        foundList = GameObject.FindGameObjectsWithTag("Enemy");
     }
     void OnDisable()
     {
@@ -44,14 +48,8 @@ public class EnemyManager : MonoBehaviour
     {//Initialization
         timer = 0f;
         playerScript = player.GetComponent<PlayerController>();
-        enemyList = new List<GameObject>();
+        //enemyList = new List<GameObject>();
         destructionList = new List<GameObject>();
-        enemyList.Add(
-             Instantiate(
-               enemyPrefab,
-               new Vector2(0, 1),
-               Quaternion.identity   //TEST ENEMY
-           ));
         rangeSize = mapSize / 4;
         eRange1 = rangeSize;
         eRange2 = rangeSize * 2;
@@ -62,22 +60,25 @@ public class EnemyManager : MonoBehaviour
         enemyX2 = (float)(rnd.Next(0, (int)rangeSize)) + eRange2;
         enemyX3 = (float)(rnd.Next(0, (int)rangeSize)) + eRange3;
 
-        //Random Spawning
-        //Enemies in Range 1
-        CreateEnemy(enemyX1);
+        enemyList.AddRange(foundList);
+        Debug.Log("added" + enemyList.Count);
 
-        //Enemies in Range 2
-        for (int i = 0; i < 2; i++)
-        {
-            CreateEnemy(enemyX2);
-            enemyX2 = (float)(rnd.Next(0, (int)rangeSize)) + eRange2;
-        }
-        //Enemies in Range 3
-        for (int i = 0; i < 3; i++)
-        {
-            CreateEnemy(enemyX3);
-            enemyX3 = (float)(rnd.Next(0, (int)rangeSize)) + eRange3;
-        }
+        //    //Random Spawning
+        //    //Enemies in Range 1
+        //    CreateEnemy(enemyX1);
+
+        //    //Enemies in Range 2
+        //    for (int i = 0; i < 2; i++)
+        //    {
+        //        CreateEnemy(enemyX2);
+        //        enemyX2 = (float)(rnd.Next(0, (int)rangeSize)) + eRange2;
+        //    }
+        //    //Enemies in Range 3
+        //    for (int i = 0; i < 3; i++)
+        //    {
+        //        CreateEnemy(enemyX3);
+        //        enemyX3 = (float)(rnd.Next(0, (int)rangeSize)) + eRange3;
+        //    }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -99,17 +100,17 @@ public class EnemyManager : MonoBehaviour
             if (enemyScript.IsAttacking && enemyScript.attackTimer > .25f)
             {
                 enemyScript.IsAttacking = false;
-                
+
             }
 
             //Enemy is dead
-            if(enemyScript.HP <= 0)
+            if (enemyScript.HP <= 0)
             {
                 destructionList.Add(enemy);
-                PointManager.Instance.UpdateScore(100,playerScript.CurrentCombo);
+                PointManager.Instance.UpdateScore(100, playerScript.CurrentCombo);
 
             }
-            if(Math.Abs(player.transform.position.x - enemy.transform.position.x) < .5f)
+            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) < .5f)
             {
                 enemyScript.Stop();
             }
@@ -149,33 +150,23 @@ public class EnemyManager : MonoBehaviour
                 enemyScript.Walk(eRange3, mapSize);
             }
 
-            float followingDist = 1;
-
             // Debug.Log(timer);
             //check if in range to attack
-            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= followingDist)
+            if (Math.Abs(player.transform.position.x - enemy.transform.position.x) <= 1.0f)
             {
-                enemyScript.inRange = true;
                 enemyScript.attackTimer += Time.deltaTime;
                 //attack after 1 second in range
                 if (enemyScript.attackTimer > 1.0f)
                 {
                     Debug.Log("Attacking");
                     enemyScript.Attack(player.transform.position);
-                }
-                if (enemyScript.attackTimer > 2.0f)
-                {
-                    Debug.Log("Not Attacking");
-                    enemyScript.IsAttacking = false;
                     enemyScript.attackTimer = 0f;
                 }
             }
 
-
             //reset timer once player leaves range
-            else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > followingDist)
+            else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > 1.0f)
             {
-                enemyScript.inRange = false;
                 enemyScript.attackTimer = 0;
             }
         }

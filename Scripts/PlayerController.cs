@@ -115,6 +115,8 @@ public class PlayerController : MonoBehaviour
         staminaBarFill.fillAmount = stamina / maxStamina;
         comboText.text = currentCombo.ToString();
 
+        Debug.Log(isGrounded);
+
         //Animation Check
         if (timeSinceAttack > actionCooldown)
         {
@@ -228,7 +230,7 @@ public class PlayerController : MonoBehaviour
             if (timeSinceAttack > attackCooldown && Input.GetKey(KeyCode.Mouse0) || timeSinceAttack > attackCooldown && Input.GetKey(KeyCode.Mouse1))
             {
 
-                if (Input.GetKey(KeyCode.Mouse0))
+                if (Input.GetKeyDown(KeyCode.Mouse0))
                 {
                     if (isGrounded)
                     {
@@ -285,7 +287,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 //Punch takes priority over kick if both inputs used simultaneously
-                else if (Input.GetKey(KeyCode.Mouse1))
+                else if (Input.GetKeyDown(KeyCode.Mouse1))
                 {
                     if (isGrounded)
                     {
@@ -447,7 +449,7 @@ public class PlayerController : MonoBehaviour
     {
         for (int i = 0; i < groundDetection.currentlyTouching.Count; i++)
         {
-            if (groundDetection.currentlyTouching[i].tag == "Ground")
+            if (groundDetection.currentlyTouching[i].tag == "Ground" || groundDetection.currentlyTouching[i].tag == "Enemy")
             {
                 if (!isGrounded)
                 {
@@ -469,7 +471,7 @@ public class PlayerController : MonoBehaviour
             if (timeSinceBeingAttacked >= iFrameTime)
             {
                 timeSinceBeingAttacked = 0;
-                Damage(5);
+                Damage(20);
 
                 Vector2 enem = collision.gameObject.transform.position;
                 Vector2 play = this.transform.position;
@@ -485,18 +487,18 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.CompareTag("Enemy"))
         {
-            Damage(25);
+            Damage(10);
             Vector2 enem = collision.gameObject.transform.position;
             Vector2 play = this.transform.position;
 
-            Vector2 kbDir = play - enem;
+            float kbDir = play.x - enem.x;
 
-            if (kbDir.x <= .05f && kbDir.x >= -.05f)
+            if (kbDir <= .05f && kbDir >= -.05f)
             {
-                kbDir.x = 2.5f;
+                kbDir = 2.5f;
             }
 
-            kbVel += kbDir * kbMultiplier;
+            kbVel += new Vector2(kbDir,0) * kbMultiplier;
             movementVel = new Vector2(0, 0);
         }
     }
@@ -507,14 +509,14 @@ public class PlayerController : MonoBehaviour
             Vector2 enem = collision.gameObject.transform.position;
             Vector2 play = this.transform.position;
 
-            Vector2 kbDir = play - enem;
+            float kbDir = play.x - enem.x;
 
-            if (kbDir.x <= .05f && kbDir.x >= -.05f)
+            if (kbDir <= .05f && kbDir >= -.05f)
             {
-                kbDir.x = 2.5f;
+                kbDir = 2.5f;
             }
 
-            kbVel += kbDir * kbMultiplier;
+            kbVel += new Vector2(kbDir, 0.1f) * kbMultiplier;
 
             movementVel = new Vector2(0, 0);
             //Damage(25);

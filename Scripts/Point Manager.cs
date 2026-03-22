@@ -11,10 +11,6 @@ public class PointManager : MonoBehaviour
     [SerializeField]
     private static float totalScore = 0;
 
-    private int _points;
-    private int _combo;
-
-
     private void Awake()
     {
         if (Instance == null)
