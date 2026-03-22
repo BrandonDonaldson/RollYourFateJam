@@ -505,7 +505,7 @@ public class PlayerController : MonoBehaviour
             kbVel += kbDir * kbMultiplier;
 
             movementVel = new Vector2(0, 0);
-            Damage(25);
+            //Damage(25);
         }
     }
 
