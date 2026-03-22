@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
         //Combo check
         if (currentAttackObject != null && !comboGainedFromCurrentAttack)
         {
-            print("Combo Succeeded");
+            //print("Combo Succeeded");
             PlayerAttack cur = currentAttackObject.GetComponent<ChildPointer>().child.GetComponent<PlayerAttack>();
             if (cur.enemyHit)
             {
