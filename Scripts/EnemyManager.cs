@@ -33,6 +33,8 @@ public class EnemyManager : MonoBehaviour
     System.Random rnd = new System.Random();
     [SerializeField]
     GameObject[] foundList;
+    [SerializeField]
+    AudioSource death;
 
     void OnEnable()
     {
@@ -106,6 +108,7 @@ public class EnemyManager : MonoBehaviour
             //Enemy is dead
             if (enemyScript.HP <= 0)
             {
+                death.Play();
                 destructionList.Add(enemy);
                 PointManager.Instance.UpdateScore(100, playerScript.CurrentCombo);
 
