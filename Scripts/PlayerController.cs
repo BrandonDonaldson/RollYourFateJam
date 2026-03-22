@@ -474,6 +474,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (collision.CompareTag("Enemy"))
         {
+            Damage(25);
             Vector2 enem = collision.gameObject.transform.position;
             Vector2 play = this.transform.position;
 
