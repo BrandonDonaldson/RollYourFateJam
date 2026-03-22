@@ -472,7 +472,11 @@ public class PlayerController : MonoBehaviour
 
             kbVel += kbDir * kbMultiplier;
         }
-        else if (collision.CompareTag("Enemy"))
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Enemy"))
         {
             Damage(25);
             Vector2 enem = collision.gameObject.transform.position;
