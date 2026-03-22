@@ -162,6 +162,11 @@ public class EnemyManager : MonoBehaviour
                 {
                     Debug.Log("Attacking");
                     enemyScript.Attack(player.transform.position);
+                }
+                if (enemyScript.attackTimer > 2.0f)
+                {
+                    Debug.Log("Not Attacking");
+                    enemyScript.IsAttacking = false;
                     enemyScript.attackTimer = 0f;
                 }
             }
