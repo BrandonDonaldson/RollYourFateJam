@@ -74,10 +74,6 @@ public class Enemy : MonoBehaviour
         }
             healthBarFill.fillAmount = (float) hp / (float) maxHp;
         //Debug.Log("HP: " + hp);
-        if (isAttacking)
-        {
-            Debug.Log("a");
-        }
         //Get rid of attackObj when not attacking
         if (!isAttacking && attackObj != null)
         {
@@ -179,7 +175,7 @@ public class Enemy : MonoBehaviour
         {
             hp = 0;
         }
-        Debug.Log("Hit for 5 damage. Hp is now " + hp);
+        Debug.Log($"Hit for {amt} damage. Hp is now " + hp);
     }
 
     public void Stop()
@@ -205,6 +201,12 @@ public class Enemy : MonoBehaviour
         { 
             isHit = true;
             Damage(5);
+        }
+
+        else if(collision.CompareTag("AirAttack"))
+        {
+            isHit = true;
+            Damage(10);
         }
     }
 }

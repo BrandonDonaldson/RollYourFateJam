@@ -70,6 +70,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool hasUsedAirAttack = false;
     [SerializeField] private bool comboGainedFromCurrentAttack = false;
 
+    [SerializeField] private AudioSource punch;
+    [SerializeField] private AudioSource kick;
+    [SerializeField] private AudioSource aPunch;
+    [SerializeField] private AudioSource aKick;
+    [SerializeField] private AudioSource dash;
+
     private enum dirData
     {
         Right,
@@ -114,8 +120,6 @@ public class PlayerController : MonoBehaviour
         healthBarFill.fillAmount = health / maxHealth;
         staminaBarFill.fillAmount = stamina / maxStamina;
         comboText.text = currentCombo.ToString();
-
-        Debug.Log(isGrounded);
 
         //Animation Check
         if (timeSinceAttack > actionCooldown)
@@ -243,6 +247,7 @@ public class PlayerController : MonoBehaviour
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
                             playerAnim.PlayAnim(4);
+                            punch.Play();
 
                             if (isGrounded)
                             {
@@ -270,6 +275,7 @@ public class PlayerController : MonoBehaviour
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
                             playerAnim.PlayAnim(5);
+                            aPunch.Play();
 
                             if (isGrounded)
                             {
@@ -294,12 +300,14 @@ public class PlayerController : MonoBehaviour
                         if (stamina >= staminaAirKick)
                         {
                             //KICK triggered here!
+                            
                             stamina -= staminaKick;
                             print("Kicking...");
                             lastDashInput = KeyCode.Mouse1;
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
                             playerAnim.PlayAnim(6);
+                            kick.Play();
 
                             if (isGrounded)
                             {
@@ -327,6 +335,7 @@ public class PlayerController : MonoBehaviour
                             timeSinceAttack = 0;
                             timeSinceStaminaUse = 0;
                             playerAnim.PlayAnim(7);
+                            aKick.Play();
 
                             if (isGrounded)
                             {
@@ -365,6 +374,7 @@ public class PlayerController : MonoBehaviour
                         stamina -= staminaDash;
                         additionalVel.x = dashForce;
                         timeSinceStaminaUse = 0;
+                        dash.Play();
                     }
                 }
                 lastDashInput = KeyCode.D;
@@ -383,6 +393,7 @@ public class PlayerController : MonoBehaviour
                         stamina -= staminaDash;
                         additionalVel.x = -dashForce;
                         timeSinceStaminaUse = 0;
+                        dash.Play();
                     }
                 }
                 lastDashInput = KeyCode.A;
