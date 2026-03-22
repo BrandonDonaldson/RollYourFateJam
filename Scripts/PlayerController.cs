@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float dashInputWindow = .1f;
     [SerializeField] private float jumpCooldown = 0.1f;
     [SerializeField] private float attackCooldown = 1.0f;
+    [SerializeField] private float iFrameTime = .5f;
     [SerializeField] private float actionCooldown = 0.25f;
     [SerializeField] private float staminaRechargeCooldown = 0.5f;
     [SerializeField] private float staminaRegenerationRate = 0.1f;
@@ -55,6 +56,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float timeSinceStaminaUse = 0.0f;
     [SerializeField] private float timeSinceJump = 0.0f;
     [SerializeField] private float timeSinceDash = 0.0f;
+    [SerializeField] private float timeSinceBeingAttacked = 0.0f;
     [SerializeField] private float stamina = 0;
     [SerializeField] private int currentCombo = 0;
     public int CurrentCombo
@@ -159,6 +161,7 @@ public class PlayerController : MonoBehaviour
         timeSinceAttack += Time.deltaTime;
         timeSinceDashInput += Time.deltaTime;
         timeSinceStaminaUse+= Time.deltaTime;
+        timeSinceBeingAttacked += Time.deltaTime;
 
         if (timeSinceStaminaUse >= staminaRechargeCooldown)
         {
@@ -463,14 +466,18 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("EnemyAttack"))
         {
-            Damage(5);
+            if (timeSinceBeingAttacked >= iFrameTime)
+            {
+                timeSinceBeingAttacked = 0;
+                Damage(5);
 
-            Vector2 enem = collision.gameObject.transform.position;
-            Vector2 play = this.transform.position;
+                Vector2 enem = collision.gameObject.transform.position;
+                Vector2 play = this.transform.position;
 
-            Vector2 kbDir = play - enem;
+                Vector2 kbDir = play - enem;
 
-            kbVel += kbDir * kbMultiplier;
+                kbVel += kbDir * kbMultiplier;
+            }
         }
     }
 

@@ -155,6 +155,10 @@ public class Enemy : MonoBehaviour
     /// <param name="playerPos">the player's current position</param>
     public void Attack(Vector2 playerPos)
     {
+        if (attackObj != null)
+        {
+            Destroy(attackObj);
+        }
         anim.PlayAnim(2);
         Debug.Log("Attacking");
         if(playerPos.x < transform.position.x)
