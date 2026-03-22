@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cc4d59ee875933a46bffecfba16dd2c5
+guid: 77f8246c549c5a746be0bdf6cc527b4d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7316229441688303391
-    second: Tower_0
+      213: -980095317097466160
+    second: Indicator_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -152,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tower_0
+      name: Indicator_0
       rect:
         serializedVersion: 2
         x: 5
         y: 0
-        width: 28
-        height: 96
+        width: 6
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -167,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f17f5170ae7788560800000000000000
-      internalID: 7316229441688303391
+      spriteID: 0d6b16a70800662f0800000000000000
+      internalID: -980095317097466160
       vertices: []
       indices: 
       edges: []
@@ -187,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tower_0: 7316229441688303391
+      Indicator_0: -980095317097466160
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

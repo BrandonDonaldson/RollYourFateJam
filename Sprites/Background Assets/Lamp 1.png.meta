@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 2ac166d770fc6324085bf668c7339790
-=======
-guid: 680b51bee82bec24280c5b292047ac75
->>>>>>> Stashed changes
+guid: 193129951296e0d4abbb0e8cca07a1a1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5405559831237585403
-    second: Lamp 1-1.png_0
+      213: -4762966716289121521
+    second: Lamp 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -41,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -156,7 +152,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lamp 1-1.png_0
+      name: Lamp 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -171,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 50696fe29f79bf4b0800000000000000
-      internalID: -5405559831237585403
+      spriteID: f03049eb10b86edb0800000000000000
+      internalID: -4762966716289121521
       vertices: []
       indices: 
       edges: []
@@ -191,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Lamp 1-1.png_0: -5405559831237585403
+      Lamp 1_0: -4762966716289121521
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

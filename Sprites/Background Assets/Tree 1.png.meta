@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 3288046fa7bc8ef44aa40b088dffcad2
-=======
-guid: 3f13b9e72db243a4dbfd2f35369538f6
->>>>>>> Stashed changes
+guid: d733e09ce7ee0d24ea4df586f69583cd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7452385032808668797
-    second: Cloud 2-1.png_0
+      213: -4832618155596115187
+    second: Tree 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -41,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -156,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cloud 2-1.png_0
+      name: Tree 1_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 19
-        width: 56
-        height: 35
+        x: 0
+        y: 0
+        width: 16
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7e9ff1f3b03c6760800000000000000
-      internalID: 7452385032808668797
+      spriteID: d03179c44671fecb0800000000000000
+      internalID: -4832618155596115187
       vertices: []
       indices: 
       edges: []
@@ -191,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cloud 2-1.png_0: 7452385032808668797
+      Tree 1_0: -4832618155596115187
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

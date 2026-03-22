@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 1ef95d55d724e0c4383fc0d1718b8d0f
-=======
-guid: 65f6e51dcd1115244bb24c425fabc0bf
->>>>>>> Stashed changes
+guid: bb82e2b41abba204aa6f70c7a0364fec
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6694892005408658632
-    second: Tree 2-1.png_0
+      213: 3334738622998220081
+    second: Sign_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -41,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -156,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tree 2-1.png_0
+      name: Sign_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 14
         y: 0
-        width: 32
-        height: 32
+        width: 74
+        height: 77
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8c45cffcec809ec50800000000000000
-      internalID: 6694892005408658632
+      spriteID: 13d85920c1f574e20800000000000000
+      internalID: 3334738622998220081
       vertices: []
       indices: 
       edges: []
@@ -191,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Tree 2-1.png_0: 6694892005408658632
+      Sign_0: 3334738622998220081
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

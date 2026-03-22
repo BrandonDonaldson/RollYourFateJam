@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: a4f5f2a4912617f448a6787387843ff0
-=======
-guid: 0913e3d08c5d16c4fa9e537ef0637de7
->>>>>>> Stashed changes
+guid: 3cdca74cab408614a9ade1b417f1e5ee
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3458204792386619284
-    second: Cloud 1-1.png_0
+      213: -1362058913294850930
+    second: Crate_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -41,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -156,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cloud 1-1.png_0
+      name: Crate_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 21
-        width: 60
-        height: 26
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c68fd3d401df100d0800000000000000
-      internalID: -3458204792386619284
+      spriteID: e84e7e582aef81de0800000000000000
+      internalID: -1362058913294850930
       vertices: []
       indices: 
       edges: []
@@ -181,11 +177,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-<<<<<<< Updated upstream
-    spriteID: 5e97eb03825dee720800000000000000
-=======
     spriteID: 
->>>>>>> Stashed changes
     internalID: 0
     vertices: []
     indices: 
@@ -195,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cloud 1-1.png_0: -3458204792386619284
+      Crate_0: -1362058913294850930
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

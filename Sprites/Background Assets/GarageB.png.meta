@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: 54924efa7705a4342a05628b4d74b2c1
-=======
-guid: 7a8542a23b439df47af5aafcf408d846
->>>>>>> Stashed changes
+guid: b111db28a98b25a42bb12c4bc23c8a70
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4367953401585316928
-    second: Cloud 3-1.png_0
+      213: 5228565996702224569
+    second: GarageB_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -41,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -156,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cloud 3-1.png_0
+      name: GarageB_0
       rect:
         serializedVersion: 2
-        x: 7
-        y: 29
-        width: 45
-        height: 24
+        x: 0
+        y: 0
+        width: 64
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0cb4c0f0689e163c0800000000000000
-      internalID: -4367953401585316928
+      spriteID: 9b05f1662199f8840800000000000000
+      internalID: 5228565996702224569
       vertices: []
       indices: 
       edges: []
@@ -191,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Cloud 3-1.png_0: -4367953401585316928
+      GarageB_0: 5228565996702224569
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

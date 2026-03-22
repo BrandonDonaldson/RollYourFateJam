@@ -1,14 +1,10 @@
 fileFormatVersion: 2
-<<<<<<< Updated upstream
-guid: daa4e5e0fe0af3d4fa771b49459e799f
-=======
-guid: 89815dfcdfa33c448994f621ef5d819d
->>>>>>> Stashed changes
+guid: 56bfb02884d33c444ba0fcd6caab3801
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6686268560168796863
-    second: Short Tower-1.png_0
+      213: -8267144598275211663
+    second: Cloud 2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -41,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -156,13 +152,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Short Tower-1.png_0
+      name: Cloud 2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 20
-        height: 45
+        x: 3
+        y: 19
+        width: 56
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,8 +167,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: fb249b184d56acc50800000000000000
-      internalID: 6686268560168796863
+      spriteID: 17e34010ac3354d80800000000000000
+      internalID: -8267144598275211663
       vertices: []
       indices: 
       edges: []
@@ -191,7 +187,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Short Tower-1.png_0: 6686268560168796863
+      Cloud 2_0: -8267144598275211663
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
