@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpForce = 25f;
     [SerializeField] private float dashForce = 25f;
     [SerializeField] private float dashDecay = .1f;
+    [SerializeField] private float kbDecay = 0.85f;
+    [SerializeField] private float kbMultiplier = 25;
     [SerializeField] private float dashInputWindow = .1f;
     [SerializeField] private float jumpCooldown = 0.1f;
     [SerializeField] private float attackCooldown = 1.0f;
@@ -44,6 +46,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Vector2 movementVel;
     [SerializeField] private Vector2 additionalVel;
+    [SerializeField] private Vector2 kbVel;
     [SerializeField] private Vector2 velocity;
 
     [SerializeField] private KeyCode lastDashInput;
@@ -90,13 +93,15 @@ public class PlayerController : MonoBehaviour
         }
 
         additionalVel.x *= dashDecay;
+        kbVel.x *= kbDecay;
+        kbVel.y *= kbDecay;
 
         if (Mathf.Abs(movementVel.x) > Mathf.Abs(additionalVel.x))
         {
             additionalVel.x = 0;
         }
 
-        velocity = movementVel + additionalVel;
+        velocity = movementVel + additionalVel + kbVel;
         playerPhysics.linearVelocity = velocity;
     }
 
@@ -459,6 +464,47 @@ public class PlayerController : MonoBehaviour
         if (collision.CompareTag("EnemyAttack"))
         {
             Damage(5);
+
+            Vector2 enem = collision.gameObject.transform.position;
+            Vector2 play = this.transform.position;
+
+            Vector2 kbDir = play - enem;
+
+            kbVel += kbDir * kbMultiplier;
+        }
+        else if (collision.CompareTag("Enemy"))
+        {
+            Vector2 enem = collision.gameObject.transform.position;
+            Vector2 play = this.transform.position;
+
+            Vector2 kbDir = play - enem;
+
+            if (kbDir.x <= .05f && kbDir.x >= -.05f)
+            {
+                kbDir.x = 2.5f;
+            }
+
+            kbVel += kbDir * kbMultiplier;
+            movementVel = new Vector2(0, 0);
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Enemy"))
+        {
+            Vector2 enem = collision.gameObject.transform.position;
+            Vector2 play = this.transform.position;
+
+            Vector2 kbDir = play - enem;
+
+            if (kbDir.x <= .05f && kbDir.x >= -.05f)
+            {
+                kbDir.x = 2.5f;
+            }
+
+            kbVel += kbDir * kbMultiplier;
+
+            movementVel = new Vector2(0, 0);
         }
     }
 
