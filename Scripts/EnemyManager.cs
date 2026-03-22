@@ -98,7 +98,7 @@ public class EnemyManager : MonoBehaviour
             //Attack timer
             if (enemyScript.IsAttacking && enemyScript.attackTimer > .25f)
             {
-                enemyScript.IsAttacking = false;
+                //enemyScript.IsAttacking = false;
                 
             }
 
@@ -163,7 +163,7 @@ public class EnemyManager : MonoBehaviour
                     Debug.Log("Attacking");
                     enemyScript.Attack(player.transform.position);
                 }
-                if (enemyScript.attackTimer > 2.0f)
+                if (enemyScript.attackTimer > 1.5f)
                 {
                     Debug.Log("Not Attacking");
                     enemyScript.IsAttacking = false;
@@ -175,8 +175,22 @@ public class EnemyManager : MonoBehaviour
             //reset timer once player leaves range
             else if (Math.Abs(player.transform.position.x - enemy.transform.position.x) > followingDist)
             {
-                enemyScript.inRange = false;
-                enemyScript.attackTimer = 0;
+                if (enemyScript.IsAttacking && enemyScript.attackTimer > 1.5f)
+                {
+                    enemyScript.IsAttacking = false;
+                    enemyScript.inRange = false;
+                    enemyScript.attackTimer = 0;
+                }
+                else if (!enemyScript.IsAttacking)
+                {
+                    enemyScript.inRange = false;
+                    enemyScript.attackTimer = 0;
+                }
+
+                if (enemyScript.IsAttacking)
+                {
+                    enemyScript.attackTimer += Time.deltaTime;
+                }
             }
         }
 
