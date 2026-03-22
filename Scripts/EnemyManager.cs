@@ -30,7 +30,6 @@ public class EnemyManager : MonoBehaviour
     private GameObject player;
     private float timer;
     System.Random rnd = new System.Random();
-    [SerializeField]
 
     void OnEnable()
     {

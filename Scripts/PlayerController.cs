@@ -463,7 +463,6 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("EnemyAttack"))
         {
-<<<<<<< HEAD
             Damage(5);
 
             Vector2 enem = collision.gameObject.transform.position;
@@ -506,9 +505,7 @@ public class PlayerController : MonoBehaviour
             kbVel += kbDir * kbMultiplier;
 
             movementVel = new Vector2(0, 0);
-=======
             Damage(25);
->>>>>>> 8c4353c5d6fd21d6e22e2b6ba132be8030d9149e
         }
     }
 
