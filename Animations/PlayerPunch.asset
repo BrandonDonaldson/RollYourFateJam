@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: PlayerPunch
   m_EditorClassIdentifier: 
   animFrames:
-  - {fileID: -938658608654533949, guid: d9c2554bb1d36374ab18d63187f28888, type: 3}
+  - {fileID: -3316543167459877813, guid: 21f80d775d6218d4bb663409cb8b2321, type: 3}
+  - {fileID: -4561140491649568499, guid: 21f80d775d6218d4bb663409cb8b2321, type: 3}
+  - {fileID: -8690625837858855543, guid: 21f80d775d6218d4bb663409cb8b2321, type: 3}
+  - {fileID: -7514080720495144117, guid: 21f80d775d6218d4bb663409cb8b2321, type: 3}
   timeBetweenFrames: 0.12
   looping: 0
